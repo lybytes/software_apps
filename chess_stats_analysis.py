@@ -29,7 +29,10 @@ with open('players.csv', 'r') as file:
         new_player = ChessPlayer(name, yob, gender, federation) #fide_id
         players_data.append(new_player)
     
-    print('success')
+print('success')
+size = len(players_data)
+print(size)
+
 
 
 with open('ratings_2021.csv', 'r') as file:
@@ -44,5 +47,4 @@ with open('ratings_2021.csv', 'r') as file:
     print('lets go')
 
 
-    
     
