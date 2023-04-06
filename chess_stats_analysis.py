@@ -2,6 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 import csv
 import numpy as np
+import random
 from scipy.stats import norm # For fitting
 from scipy.stats import rayleigh
 
@@ -53,17 +54,26 @@ with open('ratings_2021_condensed.csv', 'r') as file:
 
 yob_data = []
 elo_data = []
+count = 0
 for player_info in idToPlayers.values():
-    if len(player_info) > 1:
+    if len(player_info) > 1 and count < 50:
         player = player_info[0]
         elo = player_info[1] # Assuming elo is an integer
         if player.yob is not None and elo is not None and player.yob >= 1950 and player.yob <= 2025:
             yob_data.append(player.yob)
             elo_data.append(elo)
+            count += 1
 
 
-print(len(elo_data))
-print(elo_data[390000])
+
+plt.scatter(yob_data, elo_data)
+plt.xlabel('Year of Birth')
+plt.ylabel('Elo Rating')
+plt.title('Elo Rating vs. Year of Birth')
+plt.show()
+
+
+
 
 """
 
@@ -73,14 +83,25 @@ print('Max of elo data', np.amax(elo_data_reformatted2))    # Some descriptive s
 print('Min of elo data', np.amin(elo_data_reformatted2))
 print('Mean of elo', np.mean(elo_data_reformatted2))
 print('Std. dev. of elo', np.std(elo_data_reformatted2))
-"""
 
 
-plt.scatter(yob_data, elo_data)
+
+plt.scatter(sample_yob_data, sample_elo_data)
 plt.xlim(1950, 2023)
-plt.ylim(1500, 2500)
+plt.ylim(500, 2500)
 plt.xlabel('Year of Birth')
 plt.ylabel('Elo Rating')
 plt.title('Elo Rating vs. Year of Birth')
 plt.show()
 
+elo_data_reformatted = np.array(elo_data)
+elo_data_reformatted2 = elo_data_reformatted.astype(float)
+print('Max of elo data', np.amax(elo_data_reformatted2))    # Some descriptive statistics 
+print('Min of elo data', np.amin(elo_data_reformatted2))
+print('Mean of elo', np.mean(elo_data_reformatted2))
+print('Std. dev. of elo', np.std(elo_data_reformatted2))
+
+
+plt.xlim(1950, 2023)
+plt.ylim(500, 2500)
+"""
