@@ -18,7 +18,6 @@ idToPlayers = {}
 yob_data = []
 elo_data = []
 # Open the CSV file
-print('We made it out lol')
 with open('players.csv', 'r') as file:
 
     # Create a CSV reader object
@@ -40,7 +39,6 @@ with open('players.csv', 'r') as file:
         idToPlayers[id] = player_info
      
 
-print('Round One Complete')
 
 
 with open('ratings_2021_condensed.csv', 'r') as file:
@@ -64,9 +62,10 @@ for player_info in idToPlayers.values():
             elo_data.append(elo)
 
 
-print('success')
 print(len(elo_data))
 print(elo_data[390000])
+
+"""
 
 elo_data_reformatted = np.array(elo_data)
 elo_data_reformatted2 = elo_data_reformatted.astype(float)
@@ -74,13 +73,14 @@ print('Max of elo data', np.amax(elo_data_reformatted2))    # Some descriptive s
 print('Min of elo data', np.amin(elo_data_reformatted2))
 print('Mean of elo', np.mean(elo_data_reformatted2))
 print('Std. dev. of elo', np.std(elo_data_reformatted2))
-
+"""
 
 
 plt.scatter(yob_data, elo_data)
 plt.xlim(1950, 2023)
-plt.ylim(500,2500)
+plt.ylim(1500, 2500)
 plt.xlabel('Year of Birth')
 plt.ylabel('Elo Rating')
 plt.title('Elo Rating vs. Year of Birth')
 plt.show()
+
