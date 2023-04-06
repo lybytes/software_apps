@@ -65,14 +65,18 @@ for player_info in idToPlayers.values():
 
 
 print('success')
+print(len(elo_data))
+print(elo_data[390000])
 
-print('Max of elo data', np.amax(elo_data))    # Some descriptive statistics 
-print('Min of elo data', np.amin(elo_data))
-print('Mean of elo', np.mean(elo_data))
-print('Std. dev. of elo', np.std(elo_data))
+elo_data_reformatted = np.array(elo_data)
+elo_data_reformatted2 = elo_data_reformatted.astype(float)
+print('Max of elo data', np.amax(elo_data_reformatted2))    # Some descriptive statistics 
+print('Min of elo data', np.amin(elo_data_reformatted2))
+print('Mean of elo', np.mean(elo_data_reformatted2))
+print('Std. dev. of elo', np.std(elo_data_reformatted2))
 
 
-"""
+
 plt.scatter(yob_data, elo_data)
 plt.xlim(1950, 2023)
 plt.ylim(500,2500)
@@ -80,4 +84,3 @@ plt.xlabel('Year of Birth')
 plt.ylabel('Elo Rating')
 plt.title('Elo Rating vs. Year of Birth')
 plt.show()
-"""
