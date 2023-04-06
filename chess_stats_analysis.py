@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt 
 import csv
+import numpy as np
 from scipy.stats import norm # For fitting
 from scipy.stats import rayleigh
 
@@ -39,6 +40,9 @@ with open('players.csv', 'r') as file:
         idToPlayers[id] = player_info
      
 
+print('Round One Complete')
+
+
 with open('ratings_2021_condensed.csv', 'r') as file:
     
     reader = csv.DictReader(file)
@@ -59,11 +63,21 @@ for player_info in idToPlayers.values():
             yob_data.append(player.yob)
             elo_data.append(elo)
 
-# Create the plot with customized x-axis
+
+print('success')
+
+print('Max of elo data', np.amax(elo_data))    # Some descriptive statistics 
+print('Min of elo data', np.amin(elo_data))
+print('Mean of elo', np.mean(elo_data))
+print('Std. dev. of elo', np.std(elo_data))
+
+
+"""
 plt.scatter(yob_data, elo_data)
 plt.xlim(1950, 2023)
+plt.ylim(500,2500)
 plt.xlabel('Year of Birth')
 plt.ylabel('Elo Rating')
 plt.title('Elo Rating vs. Year of Birth')
 plt.show()
-            
+"""
